@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Username Password Input</title>
+
+    <style>
+        input {
+            height: 40px;
+            width: 300px;
+        }
+
+        button {
+            height: 40px;
+            width: 310px;
+            font-size: 20px;
+        }
+    </style>
+
+</head>
+<body>
+
+    <!-- Input Fields for Username and Password -->
+    <form action="#" method="POST" id="form">
+        <h2>
+            Username: <br><input type="text" id="username" placeholder="Username here">
+        </h2>
+
+        <h2>
+            Password: <br><input type="password" id="password" placeholder="Password here">
+        </h2>
+        <button type="submit" id="submitButton">Submit</button>
+    </form>
+
+    <!-- Script -->
+    <script>
+        const form = document.querySelector('#form');
+		const username = document.querySelector('#username');
+        const password = document.querySelector('#password');
+
+        form.addEventListener('submit', function (event) {
+			event.preventDefault();
+			console.log("Username:", username.value)
+            console.log("Password:", password.value);
+            const passwordValue = password.value;
+
+            // Dialog Box 
+            if (!isValidPassword(passwordValue)) {
+                alert ("Password should be more than 8 characters and contain both uppercase and lowercase characters."); // If password has missing lowercase, uppercase characters, or numbers
+                return; 
+            }
+            else {
+                alert ("Welcome! " + username.value); // If the password meets the requirements
+                return;
+            }
+
+			console.log("Password", password.value);
+		})
+
+        // Password verificator if it meets the requirements
+        function isValidPassword(password) {
+            const uppercaseCharacters = /[A-Z]/;
+            const lowercaseCharacters = /[a-z]/;
+            const numbers = /[0-9]/;
+
+            return (
+                password.length >= 8 && uppercaseCharacters.test(password) && lowercaseCharacters.test(password) && numbers.test(password)
+            );
+        }
+    </script>
+
+</body>
+</html>
